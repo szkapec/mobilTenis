@@ -86,24 +86,24 @@ function ball() {
 }
 let topCanvas = canvas.offsetTop;
 
-collback = (event) => {
+// collback = (event) => {
 
-    graczY = event.clientY - topCanvas - paletkaHeight/2;
+//     graczY = event.clientY - topCanvas - paletkaHeight/2;
     
         
-        if(graczY<0) {
-            graczY = 0;
-        }
-        if (graczY > ch -paletkaHeight ) {
-            graczY = ch -paletkaHeight ;
-        }
+//         if(graczY<0) {
+//             graczY = 0;
+//         }
+//         if (graczY > ch -paletkaHeight ) {
+//             graczY = ch -paletkaHeight ;
+//         }
     
-        // aiY = graczY;
-}
+//         // aiY = graczY;
+// }
 
 
 
-canvas.addEventListener('mousemove', collback);
+// canvas.addEventListener('mousemove', collback);
 
 
 collback2 = (event) => {
