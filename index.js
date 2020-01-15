@@ -30,7 +30,7 @@ const liniaHeight = 4;
 
 
 let szybkoscPilkiX = -2; //kierunki itd
-let szybkoscPilkiY = 2;
+let szybkoscPilkiY = 1;
 
 function gracz() { 
     ctx.fillStyle = "green";
@@ -86,20 +86,44 @@ function ball() {
 }
 let topCanvas = canvas.offsetTop;
 
-canvas.addEventListener('mousemove', function(event) {
-    graczY = event.clientY - topCanvas - paletkaHeight/2 ;
-    
-    if(graczY<0) {
-        graczY = 0;
-       
-    }
-    if (graczY > ch -paletkaHeight ) {
-        graczY = ch -paletkaHeight ;
-       
-    }
+collback = (event) => {
 
-    // aiY = graczY;
-});
+    graczY = event.clientY - topCanvas - paletkaHeight/2;
+    
+        
+        if(graczY<0) {
+            graczY = 0;
+        }
+        if (graczY > ch -paletkaHeight ) {
+            graczY = ch -paletkaHeight ;
+        }
+    
+        // aiY = graczY;
+}
+
+
+
+canvas.addEventListener('mousemove', collback);
+
+
+collback2 = (event) => {
+
+
+       
+    graczY = event.touches[0].clientY - topCanvas - paletkaHeight/2
+
+        if(graczY<0) {
+            graczY = 0;
+        }
+        if (graczY > ch -paletkaHeight ) {
+            graczY = ch -paletkaHeight ;
+        }
+    
+        // aiY = graczY;
+}
+
+canvas.addEventListener('touchmove', collback2)
+    // console.log(event.touches[0].clientY);
 
 function table() {
     //stol
@@ -118,11 +142,11 @@ function przyspieszenie() {
 
     //predkosc x
     if(szybkoscPilkiX > 0 && szybkoscPilkiX < 16) {
-        szybkoscPilkiX += .4;
+        szybkoscPilkiX += .3;
     }
     else if (szybkoscPilkiX < 0 && szybkoscPilkiX > -16)
     {
-        szybkoscPilkiX -= .4;
+        szybkoscPilkiX -= .3;
     }
     //predkosc Y
     if(szybkoscPilkiY > 0 && szybkoscPilkiY < 16) {
@@ -142,29 +166,29 @@ let srodekPilki = pilkaY + pilka/2;
         
         if(srodekRakietki  - srodekPilki > 25) {
             //console.log(">+200")
-            aiY -= 10
+            aiY -= 1
         }
         else if(srodekRakietki  - srodekPilki > 5) {
             //console.log("+50-200")
-            aiY -= 15
+            aiY -= 2
         }
         else if(srodekRakietki  - srodekPilki < -25) {
             //console.log("<-200")
-            aiY += 10
+            aiY += 1
         }
         else if(srodekRakietki  - srodekPilki < -5) {
             //console.log("-50-(-200)")
-            aiY += 15
+            aiY += 2
         }
         
     }
 
     else if(pilkaX <= 125 && pilkaX > 37.5) {
         if(srodekRakietki  - srodekPilki > 100) {
-            aiY -= 14
+            aiY -= 1
         }
         else if (srodekRakietki  - srodekPilki < -25) {
-            aiY += 14
+            aiY += 1
         }
     }
 
